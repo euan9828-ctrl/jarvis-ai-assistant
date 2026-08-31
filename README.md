@@ -1,50 +1,25 @@
-# JARVIS AI Assistant
+# JARVIS AI Assistant 🤖
 
-A sophisticated voice-enabled AI assistant inspired by JARVIS from Iron Man. This assistant can handle your daily tasks, respond to voice commands, manage reminders, and provide information queries.
+A voice-controlled AI assistant inspired by Tony Stark's JARVIS. Manage your daily tasks and respond to voice commands with natural language processing.
 
-## Features
+## Features ✨
 
-✨ **Voice Recognition & Text-to-Speech**
-- Listens to your voice commands
-- Responds with natural speech synthesis
-- Wake word activation ("Jarvis")
+- 🎤 **Voice Recognition** - Understand and respond to voice commands
+- 🗣️ **Text-to-Speech** - Natural spoken responses
+- ✅ **Task Management** - Add, list, complete, and delete tasks
+- ⏰ **Reminders & Scheduling** - Set reminders and schedule events
+- 🧠 **AI Brain** - Powered by Google Generative AI for intelligent responses
+- 📋 **Data Persistence** - Tasks and reminders saved automatically
+- 🌐 **Wikipedia Integration** - Quick facts and information
 
-📋 **Task Management**
-- Create and manage daily tasks
-- Set priorities and due dates
-- Mark tasks as complete
-- Persistent task storage
-
-⏰ **Reminders & Calendar**
-- Set time-based reminders
-- Recurring reminders
-- Calendar integration (optional)
-- Automatic notifications
-
-🌐 **Information Queries**
-- Weather information
-- Current time and date
-- News headlines
-- General knowledge questions
-
-🤖 **AI-Powered Conversations**
-- Natural language processing
-- Context-aware responses
-- Powered by GPT-3.5-Turbo
-
-🏠 **Smart Home Integration** (Optional)
-- Control smart devices
-- Home automation routines
-- Voice-controlled lights, temperature, etc.
-
-## Installation
+## Installation 🚀
 
 ### Prerequisites
-- Python 3.8+
+- Python 3.8 or higher
 - Microphone and speakers
-- OpenAI API key
+- Internet connection (for AI features)
 
-### Setup Steps
+### Setup
 
 1. **Clone the repository**
    ```bash
@@ -63,155 +38,152 @@ A sophisticated voice-enabled AI assistant inspired by JARVIS from Iron Man. Thi
    pip install -r requirements.txt
    ```
 
-4. **Configure environment variables**
+4. **Configure environment**
    ```bash
    cp .env.example .env
+   # Edit .env and add your Google API key
    ```
-   Edit `.env` and add your API keys:
-   - OpenAI API key
-   - Weather API key (optional)
-   - Calendar API key (optional)
 
 5. **Run JARVIS**
    ```bash
-   python jarvis.py
+   python main.py
    ```
 
-## Usage
+## Getting Your API Key 🔑
 
-### Basic Voice Commands
+### Google Generative AI API Key
+1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Create a new API key
+3. Copy the key to your `.env` file as `GOOGLE_API_KEY`
 
-**Wake up JARVIS:**
-```
-"Jarvis" → "Yes, sir? How may I assist you?"
-```
+## Usage Examples 📝
 
-**Task Management:**
+### Task Management
 ```
-"Jarvis, create a task to buy groceries"
-"Jarvis, list my tasks"
-"Jarvis, mark task 1 as complete"
-"Jarvis, delete task 2"
-```
-
-**Reminders:**
-```
-"Jarvis, remind me to call mom in 1 hour"
-"Jarvis, set a reminder for tomorrow at 9 AM"
-"Jarvis, show my reminders"
+"Add task buy groceries"
+"List tasks"
+"Complete task buy groceries"
+"Delete task buy groceries"
 ```
 
-**Information Queries:**
+### Time & Date
 ```
-"Jarvis, what's the weather?"
-"Jarvis, what time is it?"
-"Jarvis, what's today's date?"
-"Jarvis, get the latest news"
+"What time is it?"
+"What's today's date?"
 ```
 
-**Control:**
+### Reminders
 ```
-"Jarvis, stop" → Shut down
-"Jarvis, help" → Show available commands
+"Set a reminder for 3 PM to call mom"
+"Remind me to take out trash at 6 PM"
 ```
 
-## Architecture
+### General Questions
+```
+"What is machine learning?"
+"Who is Elon Musk?"
+"Tell me about Python"
+```
+
+### System
+```
+"Help"
+"Status"
+```
+
+## Project Structure 📁
 
 ```
 jarvis-ai-assistant/
-├── jarvis.py              # Main application
-├── voice_engine.py        # Speech recognition & TTS
-├── ai_brain.py            # AI response generation
-├── task_manager.py        # Task/reminder management
-├── command_parser.py      # Natural language parsing
-├── config.py              # Configuration settings
-├── requirements.txt       # Python dependencies
-├── .env.example          # Environment template
-├── data/                 # Task/calendar storage
-├── logs/                 # Application logs
-└── utils/
-    └── logger.py         # Logging setup
+├── main.py                 # Main entry point
+├── requirements.txt        # Python dependencies
+├── .env.example           # Environment variables template
+├── .gitignore
+├── README.md
+├── modules/
+│   ├── __init__.py
+│   ├── voice_handler.py   # Speech recognition & TTS
+│   ├── task_manager.py    # Task management
+│   ├── ai_brain.py        # AI responses
+│   └── scheduler.py       # Reminders & scheduling
+└── data/
+    ├── tasks.json         # Stored tasks
+    └── reminders.json     # Stored reminders
 ```
 
-## Configuration
+## Architecture 🏗️
 
-Edit `config.py` to customize:
+### Components
 
-- **Voice settings**: Rate, volume, language
-- **Speech recognition**: Timeout, language
-- **Task checking**: Interval for task checks
-- **Wake word**: Change from "jarvis" to something else
-- **Features**: Enable/disable weather, calendar, news, etc.
+**VoiceHandler**
+- Handles speech recognition using Google Speech Recognition
+- Converts text to speech using pyttsx3
+- Manages microphone input and speaker output
 
-## API Integrations
+**TaskManager**
+- CRUD operations for tasks
+- Persistent JSON storage
+- Task filtering and searching
 
-### OpenAI (Required)
-- Used for natural language processing and conversation
-- Get API key from [platform.openai.com](https://platform.openai.com)
+**AIBrain**
+- Natural language understanding
+- Wikipedia integration for facts
+- Google Generative AI for conversational responses
 
-### Weather API (Optional)
-- OpenWeatherMap or similar service
-- Get API key from [openweathermap.org](https://openweathermap.org)
+**TaskScheduler**
+- Reminder scheduling
+- Daily task checks
+- Scheduled event management
 
-### News API (Optional)
-- NewsAPI or similar service
-- Get API key from [newsapi.org](https://newsapi.org)
+## Configuration ⚙️
 
-### Google Calendar (Optional)
-- For calendar integration and event management
-- Setup OAuth2 credentials
+Edit `.env` file to customize:
 
-## Troubleshooting
+```
+GOOGLE_API_KEY=your_api_key
+DEBUG=True/False
+VOICE_RATE=150
+VOICE_VOLUME=0.9
+```
 
-### Microphone Issues
-- Check that microphone is properly connected
-- Run with `--debug` flag for verbose output
-- Test microphone: `python -c "import speech_recognition; print(speech_recognition.Microphone.list_microphone_indexes())"`
+## Troubleshooting 🔧
 
-### API Key Errors
-- Verify all API keys are correctly set in `.env`
-- Check API key permissions and quotas
-- Ensure keys are not expired
+### Microphone not detected
+- Ensure microphone is connected and working
+- Check system audio settings
+- Try: `python -c "import pyaudio; pyaudio.PyAudio()"`
 
-### Audio Output Issues
-- Verify speakers are working
-- Check volume settings in `config.py`
-- Test with system audio settings
+### Speech recognition not working
+- Check internet connection (Google Speech Recognition requires it)
+- Speak clearly and wait for the beep
+- Check microphone is not muted
 
-## Advanced Features (Coming Soon)
+### API key errors
+- Verify `GOOGLE_API_KEY` is set in `.env`
+- Ensure the API key is valid
+- Check API quotas and usage limits
 
-- 🏠 Smart home device control
-- 📧 Email integration
-- 📱 Mobile app companion
-- 🧠 Machine learning for personalization
-- 🔐 Enhanced security features
-- 🌍 Multi-language support
-- 🎵 Music playback integration
+### Audio playback issues
+- Check speaker volume
+- Verify speakers are connected
+- Try: `python -c "import pyttsx3; pyttsx3.init().say('test'); pyttsx3.init().runAndWait()"`
 
-## Contributing
+## Contributing 🤝
 
-Contributions are welcome! Please:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## License 📄
 
-## License
+This project is open source and available under the MIT License.
 
-MIT License - see LICENSE file for details
+## Inspiration 💡
 
-## Disclaimer
+Inspired by JARVIS from the Iron Man films - A sophisticated AI assistant that's always there to help.
 
-This project is inspired by JARVIS from Marvel's Iron Man universe. It is an educational and personal use project.
+## Support 💬
 
-## Support
-
-For issues, questions, or suggestions, please open an issue on GitHub.
+If you encounter any issues or have questions, please open an issue on GitHub.
 
 ---
 
-**Made with ❤️ by Euan**
-
-*"Good day, sir. I am at your service."*
+**Made with ❤️ by JARVIS**
